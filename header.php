@@ -31,6 +31,19 @@
 <link rel="stylesheet" href="<?php $this->options->themeUrl('source/css/style.css'); ?>">
 
 <script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- highligt start -->
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+<!-- highligt end -->
 
 <!-- 通过自有函数输出HTML头部信息 -->
 <?php $this->header(); ?>
