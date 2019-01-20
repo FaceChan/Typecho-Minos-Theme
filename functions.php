@@ -294,7 +294,7 @@ function getTags($tags){
 //替代content输出
 function fixContent($obj,$more = false)
 {
-    $obj->excerpt = parseContent($obj);
+    //$obj->excerpt = parseContent($obj);
     echo false !== $more && false !== strpos($obj->text, '<!--more-->') ?
     $obj->excerpt . "<p class=\"article-more-link\"><a href=\"{$obj->permalink}\" title=\"{$obj->title}\">{$more}</a></p>" : $obj->content;
 }
