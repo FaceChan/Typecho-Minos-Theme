@@ -15,9 +15,7 @@
         <div class="archive content">
             <h4 class="title is-4">友情链接</h4>
             <div class="articles">
-                <div class="article content>">
-                    <?php Links_Plugin::output('<h6 class="title is-6"><a href="{url}" target="_blank">{name}</a></h6>', 30);?>
-                </div>
+                <?php Links_Plugin::output('<div class="article content>"><span class="is-text-small">{sort}</span><h6 class="title is-6"><a href="{url}" target="_blank">{name}</a></h6></div>', 30);?>
             </div>
         </div>
     </div>

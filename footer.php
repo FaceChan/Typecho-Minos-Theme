@@ -5,14 +5,16 @@
             <div class="column is-narrow has-text-centered">
                 &copy; <?php echo date('Y'); ?> <a href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title(); ?></a>.&nbsp;
                 Powered by <a href="http://www.typecho.org" target="_blank">Typecho</a> & <a
-                        href="http://ezo.biz">Minos for Typecho</a>
+                        href="https://github.com/FaceChan/Typecho-Minos-Theme" target="_blank">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
             <div class="column is-narrow">
                 <div class="columns is-mobile is-multiline is-centered">
-                <a class="column is-narrow has-text-black" title="<%= name %>" href="<%= typeof(link) === 'string' ? link : link.url%>">
-                    <i class="<%= link.icon %>"></i>
+                <a class="column is-narrow has-text-black" title="<?php $this->options->title() ?>" href="<?php $this->options->siteUrl(); ?>">
+                <?php if($this->options->footerLogoUrl): ?>
+                <img src="<?php $this->options->footerLogoUrl(); ?>" alt="<?php $this->options->title() ?>" height="30" />
+                <?php endif;?>
                 </a>
                 </div>
             </div>
@@ -48,5 +50,10 @@
 <script src="<?php $this->options->themeUrl('source/js/script.js'); ?>"></script>
 
 <?php $this->footer(); ?>
+
+<?php if($this->options->GoogleAnalytics): ?>
+<?php $this->options->GoogleAnalytics(); ?>
+<?php endif; ?>
 </body>
 </html>
+<?php if ($this->options->htmlCompress == 'able'): $html_source = ob_get_contents(); ob_clean(); print compressHtml($html_source); ob_end_flush(); endif; ?>

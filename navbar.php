@@ -3,7 +3,11 @@
     <div class="container">
         <div class="navbar-brand">
             <a class="navbar-item navbar-logo" href="<?php $this->options->siteUrl(); ?>">
+                <?php if($this->options->logoUrl): ?>
+                <img src="<?php $this->options->logoUrl(); ?>" alt="<?php $this->options->title() ?>,<?php $this->options->description() ?>" height="28">
+                <?php else: ?>
                 <img src="<?php $this->options->themeUrl('source/images/logo.png'); ?>" alt="<?php $this->options->title() ?>,<?php $this->options->description() ?>" height="28">
+                <?php endif;?>
             </a>
             <div class="navbar-burger">
                 <span></span>

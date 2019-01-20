@@ -1,7 +1,6 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <!DOCTYPE html>
 <html class="has-navbar-fixed-top fontawesome-i2svg-active fontawesome-i2svg-complete">
-<meta name="generator" content="Typecho">
 <meta charset="<?php $this->options->charset(); ?>">
 <title><?php $this->archiveTitle(array(
             'category'  =>  _t('分类 %s 下的文章'),
@@ -16,8 +15,8 @@
 
 <meta name="keywords" content="<%= get_config('keywords') %>">
 
-<!--
-<link rel="icon" href="<%- get_config('favicon') %>">-->
+<?php if($this->options->favicon): ?>
+<link rel="shortcut icon" href="<?php $this->options->favicon(); ?>"><?php endif;?>
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
@@ -32,6 +31,7 @@
 
 <script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<?php if ($this->options->useHighline == 'able'): ?>
 <!-- highligt start -->
 <link rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
@@ -44,6 +44,7 @@ $(document).ready(function() {
 });
 </script>
 <!-- highligt end -->
+<?php endif;?>
 
 <!-- 通过自有函数输出HTML头部信息 -->
 <?php $this->header(); ?>

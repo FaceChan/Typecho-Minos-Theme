@@ -97,7 +97,7 @@ function themeConfig($form) {
 function themeInit($archive){
     Helper::options()->commentsMaxNestingLevels = 999;
     if ($archive->is('archive')) {
-        $archive->parameter->pageSize = 12;
+        $archive->parameter->pageSize = 5;
     }
 }
 function showThumb($obj,$size=null,$link=false){
@@ -140,7 +140,7 @@ function parseContent($obj){
         $obj->content = str_ireplace($options->src_add,$options->cdn_add,$obj->content);
     }
     $obj->content = preg_replace("/<a href=\"([^\"]*)\">/i", "<a href=\"\\1\" target=\"_blank\">", $obj->content);
-    echo trim($obj->content);
+    return trim($obj->content);
 }
 function getCommentAt($coid){
     $db   = Typecho_Db::get();
@@ -245,7 +245,7 @@ function compressHtml($html_source) {
                     foreach ($chars as $key => $char) {
                         if ($char == '"' && $chars[$key - 1] != '\\' && !$is_apos) {
                             $is_quot = !$is_quot;
-                        } else if ($char == '\'' && $chars[$key - 1] != '\\' && !$is_quot) {
+                        } else if ($char == '\'' && @$chars[$key - 1] != '\\' && !$is_quot) {
                             $is_apos = !$is_apos;
                         } else if ($char == '/' && $chars[$key + 1] == '/' && !$is_quot && !$is_apos) {
                             $tmp = substr($tmp, 0, $key);
@@ -292,6 +292,7 @@ function getTags($tags){
 //替代content输出
 function fixContent($obj,$more = false)
 {
+    $obj->content = parseContent($obj);
     echo false !== $more && false !== strpos($obj->text, '<!--more-->') ?
     $obj->excerpt . "<p class=\"article-more-link\"><a href=\"{$obj->permalink}\" title=\"{$obj->title}\">{$more}</a></p>" : $obj->content;
 }
@@ -325,14 +326,14 @@ function paginator($obj, $prev = '&laquo;', $next = '&raquo;', $splitPage = 3, $
 
         $options = Typecho_Widget::widget('Widget_Options');
         if (!$hasNav && $total > $obj->parameter->pageSize) {
-            $query = Typecho_Router::url($obj->parameter->type .
-            (false === strpos($obj->parameter->type, '_page') ? '_page' : NULL),
-            $obj->_pageRow, $options->index);
+            $url = $obj->parameter->type .
+            (false === strpos($obj->parameter->type, '_page') ? '_page' : NULL);
+            $query = Typecho_Router::url($url,
+            $obj->getPageRow(), $options->index);
 
             /** 使用盒状分页 */
             $nav = new Typecho_Widget_Helper_PageNavigator_Box($total   , 
                 $obj->getCurrentPage(), $obj->parameter->pageSize, $query);
-            
             $nav->render($prev, $next, $splitPage, $splitWord, $template);
         }
     }
@@ -343,7 +344,7 @@ function getPaginLink($obj, $value){
     $options = Typecho_Widget::widget('Widget_Options');
     $query = Typecho_Router::url($obj->parameter->type .
             (false === strpos($obj->parameter->type, '_page') ? '_page' : NULL),
-            $obj->_pageRow, $options->index);
+            $obj->getPageRow(), $options->index);
     $link = str_replace('{page}',$value,$query);
     return $link;
 }
