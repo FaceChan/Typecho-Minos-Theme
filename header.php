@@ -8,27 +8,17 @@
             'tag'       =>  _t('标签 %s 下的文章'),
             'author'    =>  _t('%s 发布的文章')
         ), '', ' - '); ?><?php $this->options->title(); ?></title>
+<?php $this->header(); ?>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
-<meta name="description" content="<%- get_config('description') %>">
-
-<meta name="keywords" content="<%= get_config('keywords') %>">
-
 <?php if($this->options->favicon): ?>
 <link rel="shortcut icon" href="<?php $this->options->favicon(); ?>"><?php endif;?>
-
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
-
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
-
-
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
-
 <link rel="stylesheet" href="<?php $this->options->themeUrl('source/css/style.css'); ?>">
-
 <script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <?php if ($this->options->useHighline == 'able'): ?>
@@ -45,9 +35,9 @@ $(document).ready(function() {
 </script>
 <!-- highligt end -->
 <?php endif;?>
-
-<!-- 通过自有函数输出HTML头部信息 -->
-<?php $this->header(); ?>
+<?php if($this->options->GoogleAds): ?>
+<?php $this->options->GoogleAds(); ?>
+<?php endif; ?>
 <?php if ($this->is('post') || $this->is('page')): ?>
 <link rel="stylesheet" href="<?php $this->options->themeUrl('source/css/comment.css'); ?>">
 <?php endif; ?>

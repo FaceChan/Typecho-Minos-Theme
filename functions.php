@@ -79,6 +79,8 @@ function themeConfig($form) {
     $form->addInput($useMathjax);
     $GoogleAnalytics = new Typecho_Widget_Helper_Form_Element_Textarea('GoogleAnalytics', NULL, NULL, _t('Google Analytics代码'), _t('填写你从Google Analytics获取到的Universal Analytics跟踪代码，不需要script标签'));
     $form->addInput($GoogleAnalytics);
+    $GoogleAds = new Typecho_Widget_Helper_Form_Element_Textarea('GoogleAds', NULL, NULL, _t('Google Ads代码'), _t('填写你从Google Ads获取到的Universal Analytics跟踪代码，不需要script标签'));
+    $form->addInput($GoogleAds);
     $socialweibo = new Typecho_Widget_Helper_Form_Element_Text('socialweibo', NULL, NULL, _t('输入微博链接'), _t('在这里输入微博链接,支持 http:// 或 https:// 或 //'));
     $form->addInput($socialweibo->addRule('xssCheck', _t('请不要在链接中使用特殊字符')));
     $socialzhihu = new Typecho_Widget_Helper_Form_Element_Text('socialzhihu', NULL, NULL, _t('输入知乎链接'), _t('在这里输入知乎链接,支持 http:// 或 https:// 或 //'));
@@ -292,7 +294,7 @@ function getTags($tags){
 //替代content输出
 function fixContent($obj,$more = false)
 {
-    $obj->content = parseContent($obj);
+    $obj->excerpt = parseContent($obj);
     echo false !== $more && false !== strpos($obj->text, '<!--more-->') ?
     $obj->excerpt . "<p class=\"article-more-link\"><a href=\"{$obj->permalink}\" title=\"{$obj->title}\">{$more}</a></p>" : $obj->content;
 }
