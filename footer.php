@@ -29,6 +29,7 @@
     <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
+<!--<nocompress>-->
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -54,6 +55,7 @@
 <?php if($this->options->GoogleAnalytics): ?>
 <?php $this->options->GoogleAnalytics(); ?>
 <?php endif; ?>
+<!--</nocompress>-->
 </body>
 </html>
 <?php if ($this->options->htmlCompress == 'able'): $html_source = ob_get_contents(); ob_clean(); print compressHtml($html_source); ob_end_flush(); endif; ?>

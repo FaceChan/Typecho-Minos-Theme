@@ -26,6 +26,7 @@
 <link rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<!--<nocompress>-->
 <script type="text/javascript">
 $(document).ready(function() {
   $('pre code').each(function(i, block) {
@@ -38,6 +39,7 @@ $(document).ready(function() {
 <?php if($this->options->GoogleAds): ?>
 <?php $this->options->GoogleAds(); ?>
 <?php endif; ?>
+<!--</nocompress>-->
 <?php if ($this->is('post') || $this->is('page')): ?>
 <link rel="stylesheet" href="<?php $this->options->themeUrl('source/css/comment.css'); ?>">
 <?php endif; ?>
