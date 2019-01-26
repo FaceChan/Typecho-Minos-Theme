@@ -8,7 +8,7 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date(); ?></time>
+            <time datetime="<?php $this->date("Y-m-d H:i:s"); ?>" itemprop="datePublished"><?php $this->date("Y-m-d H:i:s"); ?></time>
         </span>
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
